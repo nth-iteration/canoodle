@@ -1,0 +1,37 @@
+input[type="text"],
+input[type="password"],
+input[type="search"],
+select[multiple],
+textarea {
+  font-size:              scale($font-size);
+  line-height:            scale($font-size * 5/4);
+  height:                 scale($font-size * 5/4);
+  width:                  scale($font-size * 10);
+
+  border:                 2px solid darken($white, 20%);
+  border-botton:          2px solid darken($white, 10%);
+  -webkit-border-radius:  2px;
+  -moz-border-radius:     2px;
+  border-radius:          2px;
+
+  background:             $white;
+  color:                  darken($black, 10%);
+}
+
+select[multiple],
+textarea {
+  height:                 scale($font-size * 5);
+}
+
+input[type="image"] {
+}
+
+section[data-canoodle-scroll="true"],
+section[data-canoodle-scroll="auto"] {
+  background:             lighten($black, 10%);
+  border:                 scale(2px) solid lighten($black, 5%);
+  border-botton:          scale(2px) solid lighten($black, 20%);
+  -webkit-border-radius:  scale($font-size * 1/5);
+  -moz-border-radius:     scale($font-size * 1/5);
+  border-radius:          scale($font-size * 1/5);
+}

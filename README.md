@@ -1,4 +1,1 @@
-canoodle
-========
-
-A suite of libraries for HTML-based smart TV app development.
+Canoodle is a UI and navigation framework for smart TV. The source code uses TypeScript and Sass. Run ./build to compile.

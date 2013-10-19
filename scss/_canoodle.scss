@@ -1,0 +1,111 @@
+/****
+
+VARIABLES
+
+****/
+
+$black: #000000;
+$white: #FFFFFF;
+$glow:  #A7C9FF;
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+$font-family: 'Droid Sans', sans-serif;
+$font-size: 24px;
+
+@function scale($num){
+  @return round($num * $height/540px);
+}
+
+/****
+
+ZERO DEFAULT RESPONSES THAT ARE UNPLEASANT IN HTML-BASED APPS
+
+****/
+* {
+  /* Disable the tap highlight on Andoid */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* Adjust the size of text on iOS devices. Can approve appearance. */
+  -webkit-text-size-adjust: 50% !important;
+
+  /* Disable selection of all element... */
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input[type="text"], input[type="search"], input[type="password"], textarea, select {
+  /* ... but enable text selection for input fields and text areas. */
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+body {
+  width:      $width;
+  height:     $height;
+  overflow:   hidden;
+  margin:     0px;
+  padding:    0px;
+}
+
+/****
+
+THE CANOODLE HIGHLIGHT
+
+****/
+
+*[data-canoodle-selected="true"] {
+  -moz-box-shadow: 0px 0px scale($font-size) $glow;
+  -webkit-box-shadow: 0px 0px scale($font-size) $glow;
+  box-shadow: 0px 0px scale($font-size) $glow;
+}
+
+*[data-canoodle-focused="true"] {
+  outline: none;
+  -moz-box-shadow: 0px 0px scale($font-size / 2) lighten($glow, 15%);
+  -webkit-box-shadow: 0px 0px scale($font-size / 2) lighten($glow, 15%);
+  box-shadow: 0px 0px scale($font-size / 2) lighten($glow, 15%);
+}
+
+*:focus {
+  outline: none;
+}
+
+/****
+
+CSS NECESSARY FOR SOME OF THE CANOODLE WIDGETS - DO NOT DELETE
+
+****/
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+section[data-canoodle-scroll="auto"] { overflow:auto; }
+section[data-canoodle-scroll="true"] { overflow:scroll; }
+
+/****
+
+DELETE FROM HERE ON IF YOU DO NOT WANT TO USE THE DEFAULT CANOODLE WIDGETS.
+
+****/
+
+body {
+  background: $black;
+  color:      $white;
+
+  font-family: $font-family;
+  font-size:  scale($font-size);
+  line-height: scale($font-size * 7/4);
+}
+
+small {
+  font-size:  80%;
+}
+
+@import "buttons";
+@import "fields";

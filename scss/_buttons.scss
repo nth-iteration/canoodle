@@ -1,0 +1,89 @@
+  // Base style
+  // --------------------------------------------------
+
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  text-indent:0;
+  display:inline-block;
+  font-family: $font-family;
+  font-weight:bold;
+  font-style:normal;
+  text-decoration:none;
+  text-align:center;
+  cursor: pointer;
+
+  color: darken($white, 66%);
+  text-shadow:1px 1px 0px $white;
+
+
+  border:1px solid darken($white, 30%);
+  -moz-box-shadow:inset 0px 1px 0px 0px $white;
+  -webkit-box-shadow:inset 0px 1px 0px 0px $white;
+  box-shadow:inset 0px 1px 0px 0px $white;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, darken($white, 10%)), color-stop(1, darken($white, 20%)) );
+  background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($white, 10%)', endColorstr='darken($white, 20%)');
+  background-color:darken($white, 20%);
+
+  // Hover/focus state
+  &:active {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, darken($white, 20%)), color-stop(1, darken($white, 10%)) );
+    background:-moz-linear-gradient( center top, darken($white, 20%) 5%, darken($white, 10%) 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($white, 20%)', endColorstr='darken($white, 10%)');
+    background-color:#dfdfdf;
+  }
+  
+  // Disabled state
+  &[disabled] {
+    cursor: default;
+    box-shadow: none;
+  }
+
+
+
+  // Button Sizes
+  // --------------------------------------------------
+
+
+
+  font-size:              scale($font-size * 4/4);
+  line-height:            scale($font-size * 5/4);
+  padding:                scale($font-size * 3/8) scale($font-size * 3/4);
+  -webkit-border-radius:  scale($font-size * 1/5);
+  -moz-border-radius:     scale($font-size * 1/5);
+  border-radius:          scale($font-size * 1/5);
+
+
+  // Large
+  &.large {
+    font-size:              scale($font-size * 5/4);
+    line-height:            scale($font-size * 6/4);
+    padding:                scale($font-size * 2/4) scale($font-size * 3/4);
+    -webkit-border-radius:  scale($font-size * 1/4);
+    -moz-border-radius:     scale($font-size * 1/4);
+    border-radius:          scale($font-size * 1/4);
+  }
+  
+  // Small
+  &.small {
+    font-size:              scale($font-size * 3/4);
+    line-height:            scale($font-size * 4/4);
+    padding:                scale($font-size * 3/8) scale($font-size * 3/4);
+    -webkit-border-radius:  scale($font-size * 1/5);
+    -moz-border-radius:     scale($font-size * 1/5);
+    border-radius:          scale($font-size * 1/5);
+  }
+  
+  // Mini
+  &.mini {
+    font-size:              scale($font-size * 2/4);
+    line-height:            scale($font-size * 3/4);
+    padding:                scale($font-size * 1/4) scale($font-size * 2/4);
+    -webkit-border-radius:  scale($font-size * 3/20);
+    -moz-border-radius:     scale($font-size * 3/20);
+    border-radius:          scale($font-size * 3/20);
+  }
+
+}
