@@ -5,7 +5,7 @@
 module Canoodle {
 	export module Utils {
         /**
-         * A function to read a file given a URL. NB: The read happens asynchronously
+         * A function to read a file given a URL. NB: The read happens synchronously
          * @param url The URL of the file to read
          * @returns {string} The content of the file as a string. The string will be empty in the case of error.
          */
@@ -30,7 +30,7 @@ module Canoodle {
 		}
 
         /**
-         * Executes a script from a file given the URL to the file. NB: the file is read asynchronously
+         * Executes a script from a file given the URL to the file. NB: the file is read synchronously
          * @param url The URL of the file to be read
          * @returns {Function|function(string): *}  The value returned upon executing the script
          */
