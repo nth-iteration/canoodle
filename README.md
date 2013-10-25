@@ -1,4 +1,6 @@
-Canoodle is a suite of frameworks, libraries and development tools for smart TV. It includes:
+# Canoodle #
+
+[Canoodle](http://en.wiktionary.org/wiki/canoodle) is suite of libraries and development tools for HTML-based smart TV app development.
 
 * A designed-for-TV widget suite
 * A four-directional navigation library
@@ -8,11 +10,8 @@ Canoodle is a suite of frameworks, libraries and development tools for smart TV.
 
 ## Documentation ##
 
-Full documentation is available on [the Canoodle GitHub wiki](https://github.com/avoca-learning/canoodle).
+Full documentation is available on [the Canoodle GitHub wiki](https://github.com/avoca-learning/canoodle/wiki).
 
 ## License ##
 
- License
-The Savvy framework is open source and released under the MIT license.
-
-Canoodle is a UI and navigation framework for smart TV. The source code uses TypeScript and Sass. Run ./build to compile.
+Canoodle open source and released under the [MIT license](http://opensource.org/licenses/MIT).
