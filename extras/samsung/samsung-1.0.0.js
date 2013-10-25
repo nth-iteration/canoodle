@@ -74,42 +74,44 @@
 		return;
 	}
 
+	var widget = new Common.API.Widget();
+	var plugin = new Common.API.Plugin();
+	var tvKeyValue = new Common.API.TVKeyValue();
+
 	// enable volume buttons and send signal to 
 	window.addEventListener("load", function(){
 		window.onShow = function() { // Call API for Volume OSD
 			try {
-				var widget = Common.API.Widget();
-				var pluginAPI = new Common.API.Plugin();
-				var tvKey = new Common.API.TVKeyValue();
-
-				pluginAPI.registIMEKey();
-				pluginAPI.unregistKey(tvKey.KEY_VOL_UP);
-				pluginAPI.unregistKey(tvKey.KEY_VOL_DOWN);
-				pluginAPI.unregistKey(tvKey.KEY_MUTE);
-				pluginAPI.SetBannerState(2);
-
-				window.addEventListener("keydown", function(event) {
-				    var keyCode = event.keyCode;
-					if (keyCode = tvKey.KEY_RETURN) {
-						if (window.history.length == 0) {
-							widget.blockNavigation(event);
-							window.history.back();
-						} // widget.sendReturnEvent();
-					}
-				}
-
+				plugin.registIMEKey();
+				plugin.unregistKey(tvKeyValue.KEY_VOL_UP);
+				plugin.unregistKey(tvKeyValue.KEY_VOL_DOWN);
+				plugin.unregistKey(tvKeyValue.KEY_MUTE);
+				plugin.SetBannerState(1);
 			} catch(err) {
 				// meh, probably not a Samsung TV
 			}
 		};
 		
-		var widgetAPI = new Common.API.Widget();
-		widgetAPI.sendReadyEvent();
+		widget.sendReadyEvent();
 	}, false);
 
 	// create the Samsung object
 	window.Samsung = {};
 	window.Samsung.showIME = addSamsungIMEtoTextField;
+	window.Samsung.enableScreenSaver = function() {
+		try {
+			plugin.setOnScreenSaver();
+		} catch(err) {
+			// meh, probably not a Samsung TV
+		}
+	}
+	window.Samsung.disableScreenSaver = function() {
+		try {
+			plugin.setOffScreenSaver();
+		} catch(err) {
+			// meh, probably not a Samsung TV
+		}
+	}
 
 	// Provided for ease of setting the input mode.
 	window.Samsung.LOWERCASE = "_latin_small"; 	// "abcd", "boy", "girl"
@@ -157,12 +159,20 @@
 
 			function Input(el) {
 				var ime = new IMEShell(el.id, function(imeObj) {
-					var tvKey = new Common.API.TVKeyValue();
-
 					ime.setMode(mode);
+
+					// adjust position of OSK, if necessary
+					if (el.offsetLeft > window.innerWidth/2) {
+						ime.setKeypadPos(20, 80);
+						ime.setQWERTYPos(20, 80);
+					} else {
+						ime.setKeypadPos(window.innerWidth - 320, 80);
+						ime.setQWERTYPos(window.innerWidth - 320, 80);
+					}
+
 					ime.setEnterFunc(blurIME);
-					ime.setKeyFunc(tvKey.KEY_RETURN, blurIME);
-					ime.setKeyFunc(tvKey.KEY_EXIT, function() {
+					ime.setKeyFunc(tvKeyValue.KEY_RETURN, blurIME);
+					ime.setKeyFunc(tvKeyValue.KEY_EXIT, function() {
 						sendExitEvent();
 					});
 					ime.setString(el.value);
