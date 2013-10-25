@@ -1,0 +1,1 @@
+var Canoodle;(function(c){(function(a){a.name="Avoca Android";a.Keys={LEFT:37,RIGHT:39,UP:38,DOWN:40,SPACE:32,ENTER:13,DELETE:8,TAB:9,ESC:27};(function(a){a.open=function(a,b){"undefined"===typeof b&&(b=!0);b?window.LaunchInterface.launchWebBrowser(a):window.LaunchInterface.launchWebApp(a)}})(a.Browser||(a.Browser={}))})(c.Device||(c.Device={}))})(Canoodle||(Canoodle={}));

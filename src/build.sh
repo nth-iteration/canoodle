@@ -1,4 +1,4 @@
-out="./out/canoodle"
+out="../canoodle"
 
 function clean {
 	echo "Cleaning..."

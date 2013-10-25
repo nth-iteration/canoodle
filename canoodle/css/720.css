@@ -1,0 +1,188 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+/****
+
+VARIABLES
+
+****/
+/****
+
+ZERO DEFAULT RESPONSES THAT ARE UNPLEASANT IN HTML-BASED APPS
+
+****/
+* {
+  /* Disable the tap highlight on Andoid */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* Adjust the size of text on iOS devices. Can approve appearance. */
+  -webkit-text-size-adjust: 50% !important;
+  /* Disable selection of all element... */
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+input[type="text"], input[type="search"], input[type="password"], textarea, select {
+  /* ... but enable text selection for input fields and text areas. */
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text; }
+
+body {
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px; }
+
+/****
+
+THE CANOODLE HIGHLIGHT
+
+****/
+*[data-canoodle-selected="true"] {
+  -moz-box-shadow: 0px 0px 32px #a7c9ff;
+  -webkit-box-shadow: 0px 0px 32px #a7c9ff;
+  box-shadow: 0px 0px 32px #a7c9ff; }
+
+*[data-canoodle-focused="true"] {
+  outline: none;
+  -moz-box-shadow: 0px 0px 16px #f3f8ff;
+  -webkit-box-shadow: 0px 0px 16px #f3f8ff;
+  box-shadow: 0px 0px 16px #f3f8ff; }
+
+*:focus {
+  outline: none; }
+
+/****
+
+CSS NECESSARY FOR SOME OF THE CANOODLE WIDGETS - DO NOT DELETE
+
+****/
+*::-webkit-scrollbar {
+  display: none; }
+
+section[data-canoodle-scroll="auto"] {
+  overflow: auto; }
+
+section[data-canoodle-scroll="true"] {
+  overflow: scroll; }
+
+/****
+
+DELETE FROM HERE ON IF YOU DO NOT WANT TO USE THE DEFAULT CANOODLE WIDGETS.
+
+****/
+body {
+  background: black;
+  color: white;
+  font-family: "Droid Sans", sans-serif;
+  font-size: 32px;
+  line-height: 56px; }
+
+small {
+  font-size: 80%; }
+
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  text-indent: 0;
+  display: inline-block;
+  font-family: "Droid Sans", sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  color: #575757;
+  text-shadow: 1px 1px 0px white;
+  border: 1px solid #b3b3b3;
+  -moz-box-shadow: inset 0px 1px 0px 0px white;
+  -webkit-box-shadow: inset 0px 1px 0px 0px white;
+  box-shadow: inset 0px 1px 0px 0px white;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e6e6e6), color-stop(1, #cccccc));
+  background: -moz-linear-gradient(center top, #ededed 5%, #dfdfdf 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($white, 10%)', endColorstr='darken($white, 20%)');
+  background-color: #cccccc;
+  font-size: 32px;
+  line-height: 40px;
+  padding: 12px 24px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px; }
+  button:active,
+  input[type="submit"]:active,
+  input[type="reset"]:active,
+  input[type="button"]:active {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #e6e6e6));
+    background: -moz-linear-gradient(center top, #cccccc 5%, #e6e6e6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($white, 20%)', endColorstr='darken($white, 10%)');
+    background-color: #dfdfdf; }
+  button[disabled],
+  input[type="submit"][disabled],
+  input[type="reset"][disabled],
+  input[type="button"][disabled] {
+    cursor: default;
+    box-shadow: none; }
+  button.large,
+  input[type="submit"].large,
+  input[type="reset"].large,
+  input[type="button"].large {
+    font-size: 40px;
+    line-height: 48px;
+    padding: 16px 24px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px; }
+  button.small,
+  input[type="submit"].small,
+  input[type="reset"].small,
+  input[type="button"].small {
+    font-size: 24px;
+    line-height: 32px;
+    padding: 12px 24px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px; }
+  button.mini,
+  input[type="submit"].mini,
+  input[type="reset"].mini,
+  input[type="button"].mini {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 16px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px; }
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+select[multiple],
+textarea {
+  font-size: 32px;
+  line-height: 40px;
+  height: 40px;
+  width: 320px;
+  border: 2px solid #cccccc;
+  border-botton: 2px solid #e6e6e6;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background: white;
+  color: black; }
+
+select[multiple],
+textarea {
+  height: 160px; }
+
+section[data-canoodle-scroll="true"],
+section[data-canoodle-scroll="auto"] {
+  background: #1a1a1a;
+  border: 3px solid #0d0d0d;
+  border-botton: 3px solid #333333;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px; }
