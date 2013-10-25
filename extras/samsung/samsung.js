@@ -20,51 +20,6 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-	This script will:
-		1. automatically display a Samsung app when DOM has loaded
-		2. automatically enable volume and mute control
-		3. expose a method to attach and display the IME for a textbox
-
-	Use:
-
-		<input type="text" onfocus="javascript:Samsung.showIME(this, Samsung.NUMBERS);" />
-
-	The first agument in Samsung.showIME the text input field to attache the IME to.
-
-	The second arugment is optional. Optional values are:
-
- 		- Samsung.LOWERCASE
- 		- Samsung.CAPITALIZE
- 		- Samsung.UPPERCASE
- 		- Samsung.NUMBERS
- 		- Samsung.SPECIAL
-
-	IMPORTANT!
-
-	The following files must be linked from the HEAD of your document
-	(NB: set path to Samsung.js as appropriate):
-
-		<!-- Samsung Official Libraries -->
-		<script type="text/javascript" src="$MANAGER_WIDGET/Common/API/Widget.js"></script>
-		<script type="text/javascript" src="$MANAGER_WIDGET/Common/API/Plugin.js"></script>
-		<script type="text/javascript" src="$MANAGER_WIDGET/Common/API/TVKeyValue.js"></script>
-		<script type="text/javascript" src="$MANAGER_WIDGET/Common/Util/Include.js"></script>
-		<script type="text/javascript" src="$MANAGER_WIDGET/Common/Util/Language.js"></script>
-		<script type="text/javascript" src="$MANAGER_WIDGET/Common/Plugin/Define.js"></script>
-		<script type='text/javascript' src='$MANAGER_WIDGET/Common/webapi/1.0/webapis.js'></script>
-
-		<!-- Samsung.js -->
-		<script type='text/javascript' src='Samsung.js'></script>
-
-	The following must be linked from the BODY of your document:
-
-		<!-- Samsung: IME -->
-		<script type="text/javascript" src="$MANAGER_WIDGET/Common/IME_XT9/ime.js"></script>
-		<script type="text/javascript" src="$MANAGER_WIDGET/Common/IME/ime2.js"></script>
-
-		<!-- Samsung: OSD -->
-		<object id="pluginObjectTVMW" border=0 classid="clsid:SAMSUNG-INFOLINK-TVMW" style="visibility:hidden; position:absolute; width: 0; height: 0; opacity: 0;"></object>
-		<object id="pluginObjectNNavi" border=0 classid="clsid:SAMSUNG-INFOLINK-NNAVI" style="visibility:hidden; position:absolute; width: 0; height: 0; opacity: 0;"></object>
 */
 
 (function(){
@@ -95,23 +50,30 @@
 		widget.sendReadyEvent();
 	}, false);
 
+	// no operation
+	var noop = function() {};
+
 	// create the Samsung object
 	window.Samsung = {};
 	window.Samsung.showIME = addSamsungIMEtoTextField;
+	window.Samsung.hideIME = noop;
+	window.Samsung.exitApp = function(){
+		widget.sendExitEvent();
+	};
 	window.Samsung.enableScreenSaver = function() {
 		try {
 			plugin.setOnScreenSaver();
 		} catch(err) {
 			// meh, probably not a Samsung TV
 		}
-	}
+	};
 	window.Samsung.disableScreenSaver = function() {
 		try {
 			plugin.setOffScreenSaver();
 		} catch(err) {
 			// meh, probably not a Samsung TV
 		}
-	}
+	};
 
 	// Provided for ease of setting the input mode.
 	window.Samsung.LOWERCASE = "_latin_small"; 	// "abcd", "boy", "girl"
@@ -172,9 +134,11 @@
 
 					ime.setEnterFunc(blurIME);
 					ime.setKeyFunc(tvKeyValue.KEY_RETURN, blurIME);
-					ime.setKeyFunc(tvKeyValue.KEY_EXIT, function() {
-						sendExitEvent();
+					ime.setKeyFunc(tvKeyValue.KEY_EXIT, function(){
+						blurIME();
+						window.Samsung.exitApp();
 					});
+					
 					ime.setString(el.value);
 
 					_g_ime.dim_use_YN = false;
@@ -187,14 +151,19 @@
 					}
 
 					el.onblur = blurIME;
+					window.Samsung.hideIME = blurIME;
 
 					function blurIME() {
+						window.Samsung.hideIME = noop;
+						
 						if (_g_ime.pluginMouse_use_YN) {
 							ime._blur();
 						} else {
 							ime.blur();
 						}
 						ime = null; // we don't need this any more
+
+						el.blur();
 					}
 
 				}, "en");
